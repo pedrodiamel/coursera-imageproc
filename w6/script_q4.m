@@ -18,13 +18,14 @@ clear ; close all; clc
 %% Load image
 
 I = imread('https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Switzerland_%28Pantone%29.svg/320px-Flag_of_Switzerland_%28Pantone%29.svg.png');
+I = max(double(I),0);
 I = I./max(I(:));
-I = 255 - I.*255;
+
 
 if size(I,3) == 3 
 I = rgb2gray(I);
 end
-I = double(I);
+I = 255 - double(I).*255;
 I = imresize(I, 1/3);
 
 figure(1); imshow(I,[]); title('Image original');
